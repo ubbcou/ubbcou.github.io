@@ -2,9 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
-  entry: './src/index.js',
+  entry: [require.resolve('./polyfills'), 'babel-polyfill', './src/index.js'],
   output: {
-    path: path.resolve(__dirname, '..'),
+    path: path.resolve(__dirname, '../', '../'),
     filename: '[id].[chunkhash].js'
   },
   devtool: '',
@@ -18,7 +18,7 @@ module.exports = {
         }
       },
       {
-        test: /.(css|less)$/,
+        test: /.(css)$/,
         use: [
           {loader: 'style-loader'},
           {loader: 'css-loader'},
@@ -31,8 +31,8 @@ module.exports = {
       title: 'Welcome to Lalatina',
       template: 'index.html',
     }),
-    new CleanWebpackPlugin(['*.js', '*.html'], {
-      root: path.resolve(__dirname, '..'),
+    new CleanWebpackPlugin(['*.js'], {
+      root: path.resolve(__dirname, '../', '../'),
     })
   ],
   devServer: {

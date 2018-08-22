@@ -1,4 +1,5 @@
 const API_ROOT = 'https://www.lalatina.cc/'
+// 封装的请求方法，没有error是因为
 const callapi = url => {
   const fullUrl = (url.indexOf(API_ROOT) === -1) ? API_ROOT + url : url
 
