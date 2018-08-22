@@ -1,8 +1,9 @@
 {
   "name": "demo6",
   "version": "1.0.0",
-  "description": "",
+  "description": "lalatina development",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "webpack-dev-server --open --mode=development",
     "build": "webpack --mode=production"
@@ -17,6 +18,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "redux-devtools": "^3.4.1",
     "style-loader": "^0.22.1",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
@@ -25,7 +27,11 @@
   "dependencies": {
     "@material-ui/core": "^1.5.1",
     "@material-ui/icons": "^2.0.3",
+    "lodash": "^4.17.10",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   }
 }

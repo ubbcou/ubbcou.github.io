@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LalaTiNaPage from './views/LalaTiNa';
-import './app.css'
-const App = () => (
-  <LalaTiNaPage />
-)
+import App from './App';
 
 if(document.getElementById('root')) {
   ReactDOM.render(

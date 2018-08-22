@@ -10,15 +10,16 @@ import {
   Step,
   StepLabel,
   StepContent,
-  Paper,
   Grid,
   Typography
 } from '@material-ui/core';
+import {loadUser} from '../store';
+import { connect } from 'react-redux';
 
-const styles = theme => ({
+const styles = (theme) => ({
   card_layout: {
     boxShadow: 'none',
-    backgroundColor: '#f1d8b9',
+    backgroundColor: theme.palette.primary.main,
     borderRadius: 0
   },
   cardcontent_laylout: {
@@ -35,7 +36,11 @@ const styles = theme => ({
   }
 });
 
-class SimpleCard extends Component {
+class Main extends Component {
+  componentDidMount() {
+    this.props.loadUser(1)
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -89,8 +94,13 @@ class SimpleCard extends Component {
   }
 }
 
-SimpleCard.propTypes = {
+Main.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleCard)
+const mapStateToProps = (state) => {
+  return state
+}
+export default withStyles(styles)(connect(mapStateToProps, {
+  loadUser,
+})(Main))

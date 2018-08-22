@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, '..'),
     filename: '[id].[chunkhash].js'
   },
-  devtool: 'eval',
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -28,8 +28,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'Welcome to Lalatina',
       template: 'index.html',
-      title: 'welcome'
     })
   ],
   devServer: {
