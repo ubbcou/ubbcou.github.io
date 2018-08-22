@@ -1,21 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import React, { Component } from 'react';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Provider } from 'react-redux';
+import theme from './theme';
 import configureStore from './store'
 import Home from './views/Home';
 import './App.css';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#f1d8b9',
-    },
-  },
-  typography: {
-    htmlFontSize: 18,
-  },
-});
 
 class App extends Component {
   render() {

@@ -11,9 +11,11 @@ import {
   StepLabel,
   StepContent,
   Grid,
-  Typography
+  Typography,
+  CircularProgress,
+  Paper
 } from '@material-ui/core';
-import {loadUser} from '../store';
+import {loadExperience, updateExperience} from '../store';
 import { connect } from 'react-redux';
 
 const styles = (theme) => ({
@@ -32,17 +34,41 @@ const styles = (theme) => ({
     margin: '0 auto'
   },
   stepper_layout: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    borderLeft: '3px dashed' + theme.palette.primary.main,
+    borderRight: '3px dashed' + theme.palette.primary.main,
+  },
+  step_heading: {
+    borderLeft: `${theme.spacing.unit}px solid ${theme.palette.primary.main}`,
+    paddingLeft: theme.spacing.unit / 2,
+    marginLeft: `-${theme.spacing.unit/4}px`
+  },
+  step_heading_paper: {
+    paddingLeft: theme.spacing.unit / 2,
+    paddingTop: theme.spacing.unit * 3 / 2,
+    paddingBottom: theme.spacing.unit * 3 / 2
   }
 });
 
 class Main extends Component {
   componentDidMount() {
-    this.props.loadUser(1)
+    this.props.loadExperience()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    
+  }
+
+  // 改变当前项的 active 状态
+  switchExperienceActive(current) {
+    current.is_active = !current.is_active;
+    this.props.updateExperience(current)
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, experience } = this.props;
+    const experienceLoading = experience.loading;
+    const experienceData = experience.data;
 
     return (
       <div>
@@ -65,27 +91,21 @@ class Main extends Component {
 
         <Grid container spacing={0}>
           <Grid item lg={8} md={10} sm={12} xs={12} className={classes.page_container_layout}>
+            <div className={classes.step_heading}>
+              <Paper elevation={0} className={classes.step_heading_paper}>
+                <Typography variant="subheading">经历</Typography>
+              </Paper>
+            </div>
+            {experienceLoading ? <CircularProgress size={36} color="secondary" /> : null}
             <Stepper orientation="vertical" className={classes.stepper_layout}>
-              <Step>
-                <StepLabel>享受青蛙Play加入男主角的队伍。</StepLabel>
-                <StepContent>
-                  <Typography>
-                    为了享受青蛙Play加入男主角的队伍。在保护惠惠的时候中了魔王干部无头骑士的诅咒。在诅咒被阿库娅轻松解除后，又与无头骑士展开激战，成功砍到了对手一剑。因为家族揽下了重修被破坏的城镇的费用及给居民的补偿而向领主阿尔达普借债，并以自己的身体作为担保，但向小队等人保密了。
-                  </Typography>
-                </StepContent>
-              </Step>
-              <Step active>
-                <StepLabel>标题</StepLabel>
-                <StepContent>
-                  <Typography>内容</Typography>
-                </StepContent>
-              </Step>
-              <Step active>
-                <StepLabel>标题</StepLabel>
-                <StepContent>
-                  <Typography>内容</Typography>
-                </StepContent>
-              </Step>
+              {experienceData.map(item => (
+                <Step key={item.id} active={item.is_active} onClick={() => this.switchExperienceActive(item)}>
+                  <StepLabel>{item.title}</StepLabel>
+                  <StepContent>
+                    <Typography>{item.description}</Typography>
+                  </StepContent>
+                </Step>
+              ))}
             </Stepper>
           </Grid>
         </Grid>
@@ -102,5 +122,6 @@ const mapStateToProps = (state) => {
   return state
 }
 export default withStyles(styles)(connect(mapStateToProps, {
-  loadUser,
+  loadExperience,
+  updateExperience,
 })(Main))

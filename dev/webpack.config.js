@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -30,6 +30,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Welcome to Lalatina',
       template: 'index.html',
+    }),
+    new CleanWebpackPlugin(['*.*'], {
+      root: path.resolve(__dirname, '..'),
     })
   ],
   devServer: {

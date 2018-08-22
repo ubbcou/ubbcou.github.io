@@ -1,5 +1,6 @@
+const API_ROOT = 'https://www.lalatina.cc/'
 const callapi = url => {
-  const fullUrl = url;
+  const fullUrl = (url.indexOf(API_ROOT) === -1) ? API_ROOT + url : url
 
   return fetch(fullUrl)
     .then(response => {
