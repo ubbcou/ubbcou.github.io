@@ -83,8 +83,8 @@ class Main extends Component {
             </Typography>
           </CardContent>
           <CardActions className={classes.cardactions_laylout}>
-            <a href="https://github.com/ubbcou" target="__blank">
-              <Button size="small">About me</Button>
+            <a href="https://github.com/ubbcou/ubbcou.github.io" target="__blank">
+              <Button size="small">Repository</Button>
             </a>
           </CardActions>
         </Card>

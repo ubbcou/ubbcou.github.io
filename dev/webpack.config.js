@@ -31,7 +31,7 @@ module.exports = {
       title: 'Welcome to Lalatina',
       template: 'index.html',
     }),
-    new CleanWebpackPlugin(['*.*'], {
+    new CleanWebpackPlugin(['*.js', '*.html'], {
       root: path.resolve(__dirname, '..'),
     })
   ],
