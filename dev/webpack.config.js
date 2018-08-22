@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, '..'),
     filename: '[id].[chunkhash].js'
   },
-  devtool: 'inline-source-map',
+  devtool: '',
   module: {
     rules: [
       {

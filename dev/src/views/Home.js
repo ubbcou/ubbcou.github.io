@@ -38,12 +38,15 @@ const styles = (theme) => ({
     borderLeft: '3px dashed' + theme.palette.primary.main,
     borderRight: '3px dashed' + theme.palette.primary.main,
   },
-  step_heading: {
+  step_style: {
+    cursor: 'pointer'
+  },
+  steps_heading: {
     borderLeft: `${theme.spacing.unit}px solid ${theme.palette.primary.main}`,
     paddingLeft: theme.spacing.unit / 2,
     marginLeft: `-${theme.spacing.unit/4}px`
   },
-  step_heading_paper: {
+  steps_heading_paper: {
     paddingLeft: theme.spacing.unit / 2,
     paddingTop: theme.spacing.unit * 3 / 2,
     paddingBottom: theme.spacing.unit * 3 / 2
@@ -91,15 +94,18 @@ class Main extends Component {
 
         <Grid container spacing={0}>
           <Grid item lg={8} md={10} sm={12} xs={12} className={classes.page_container_layout}>
-            <div className={classes.step_heading}>
-              <Paper elevation={0} className={classes.step_heading_paper}>
-                <Typography variant="subheading">经历</Typography>
+            {/* <div className={classes.steps_heading}>
+              <Paper elevation={0} className={classes.steps_heading_paper}>
               </Paper>
-            </div>
+            </div> */}
             {experienceLoading ? <CircularProgress size={36} color="secondary" /> : null}
             <Stepper orientation="vertical" className={classes.stepper_layout}>
               {experienceData.map(item => (
-                <Step key={item.id} active={item.is_active} onClick={() => this.switchExperienceActive(item)}>
+                <Step
+                  key={item.id}
+                  active={item.is_active}
+                  className={classes.step_style}
+                  onClick={() => this.switchExperienceActive(item)}>
                   <StepLabel>{item.title}</StepLabel>
                   <StepContent>
                     <Typography>{item.description}</Typography>
