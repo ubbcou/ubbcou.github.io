@@ -15,7 +15,7 @@ import {
   CircularProgress,
   Paper
 } from '@material-ui/core';
-import {loadExperience, updateExperience} from '../store';
+import {loadExperience, updateExperience} from '../store/actions/experience';
 import { connect } from 'react-redux';
 import GlobalFoot from 'Components/GlobalFoot';
 
