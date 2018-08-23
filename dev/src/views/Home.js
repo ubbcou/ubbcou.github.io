@@ -17,6 +17,7 @@ import {
 } from '@material-ui/core';
 import {loadExperience, updateExperience} from '../store';
 import { connect } from 'react-redux';
+import GlobalFoot from 'Components/GlobalFoot';
 
 const styles = (theme) => ({
   card_layout: {
@@ -115,6 +116,8 @@ class Main extends Component {
             </Stepper>
           </Grid>
         </Grid>
+      
+        <GlobalFoot />
       </div>
     );
   }
