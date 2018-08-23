@@ -1,5 +1,5 @@
 const API_ROOT = 'https://www.lalatina.cc/'
-// 封装的请求方法，没有error是因为
+// 封装的请求方法
 const callapi = url => {
   const fullUrl = (url.indexOf(API_ROOT) === -1) ? API_ROOT + url : url
 
@@ -17,7 +17,6 @@ const callapi = url => {
 export const CALL_API = 'Call API';
 export default store => next => action => {
   const callAPI = action[CALL_API];
-
   if (typeof callAPI === 'undefined') {
     return next(action);
   }
@@ -41,7 +40,7 @@ export default store => next => action => {
     const finalAction = Object.assign({}, action, data)
     delete finalAction[CALL_API];
     
-    return finalAction
+    return finalAction;
   }
 
   const [requestType, successType, failureType] = types;
@@ -49,8 +48,8 @@ export default store => next => action => {
 
   return callapi(url).then(
     response => next(actionWidth({
-      response,
-      type: successType
+      type: successType,
+      response
     })),
     error => next(actionWidth({
       type: failureType,

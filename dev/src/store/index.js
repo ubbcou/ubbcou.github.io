@@ -19,27 +19,20 @@ const fetchExperience = () => {
     }
   }
 }
-const updateExperienceAction = (experience, experiences) => {
-  const newData = experiences.map(item => {
-    if(item.id == experience) {
-      return experience;
-    } else {
-      return item;
-    }
-  })
+// 更新的 action
+const updateExperienceAction = (newExperienceItem) => {
   return {
     type: EXPERIENCE_UPDATE,
-    updatedData: newData
+    updatedDataItem: newExperienceItem
   }
 }
-export const loadExperience = () => (dispatch, getState) => {
-  // const user = getState().experience.data;
-
+// 触发加载
+export const loadExperience = () => (dispatch) => {
   return dispatch(fetchExperience())
 }
-export const updateExperience = (experience) => (dispatch, getState) => {
-  const experiences = getState().experience.data;
-  return dispatch(updateExperienceAction(experience, experiences))
+// 触发更新
+export const updateExperience = (newExperienceItem) => (dispatch) => {
+  return dispatch(updateExperienceAction(newExperienceItem))
 }
 
 // reducers
@@ -52,10 +45,27 @@ const experience = (state = {data: [], loading: false}, action) => {
     case EXPERIENCE_REQUEST:
       return merge({}, state, {loading: false});
     case EXPERIENCE_UPDATE:
-      return merge({}, state, {data: action.updatedData});
+      const newData = state.data.map(item => {
+        if(item.id == action.updatedDataItem.id) {
+          return action.updatedDataItem;
+        } else {
+          return item;
+        }
+      })
+      return merge({}, state, {data: newData});
     default:
       return state;
   }
+}
+
+/**
+ * 生成 reducer 的函数
+ * @param {object} initState 默认state
+ * @param {array} types action types
+ * @param {array} returns Action 处理后的返回值
+ */
+function createReducer(initState = {}, types = [], returns = []) {
+  
 }
 
 const rootReducer = combineReducers({
