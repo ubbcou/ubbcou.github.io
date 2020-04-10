@@ -3,12 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Welcome to Lalatina</title>
+  <title>测试唤起微信/APP</title>
+  <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+  <style>
+    .action-item {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <!-- content -->
-  <div id="root">
+  <div id="app">
+    <div class="action-item" @click="openWeiXin">打开微信</div>
+    <div class="action-item" @click="openYW">打开大语文</div>
   </div>
-<script type="text/javascript" src="1.6e2dfad3cdcf0e264519.js"></script><script type="text/javascript" src="0.16388a230eae2f3a5c2b.js"></script></body>
+
+  <script>
+    new Vue({
+      el: '#app',
+      methods: {
+        openWeiXin() {
+          try {
+              location.href = 'weixin://'
+            } catch (error) {
+              // 
+            }
+
+            setTimeout(() => {
+              location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.tencent.mm'
+            }, 2000);
+        },
+        openYW() {
+          if (this.webEnv.isIOS) {
+            location.href = 'https://wwwtest.hexiaoxiang.com/ios/dayuwen/'
+          } else {
+            try {
+              location.href = 'yuwen://main/index'
+            } catch (error) {
+              // 
+            }
+
+            setTimeout(() => {
+              location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.hexiaoxiang.yuwen'
+            }, 2000);
+          }
+        }
+      }
+    })
+  </script>
+</body>
 </html>
