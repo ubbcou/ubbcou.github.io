@@ -22,6 +22,21 @@
   <script>
     new Vue({
       el: '#app',
+      computed: {
+        webEnv() {
+          let BrowserInfo = {
+            isPhone: Boolean(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)),
+            isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/ig)),
+            isMiniProgram: Boolean(navigator.userAgent.match(/miniProgram/ig)),
+            isAli: Boolean(navigator.userAgent.match(/AlipayClient/ig)),
+            isAndroid: Boolean(navigator.userAgent.match(/android/ig)),
+            isIphone: Boolean(navigator.userAgent.match(/iphone|ipod/ig)),
+            isIpad: Boolean(navigator.userAgent.match(/ipad|Macintosh/ig)),
+            isIOS: Boolean(navigator.userAgent.match(/iphone|ipod|ipad|Macintosh/ig)),
+          }
+          return BrowserInfo
+        }
+      },
       methods: {
         openWeiXin() {
           try {
