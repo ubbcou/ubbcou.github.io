@@ -19,5 +19,11 @@ function getRootSidebar() {
         { text: '这是什么？', link: '/' },
       ]
     },
+    {
+      text: '关于编译',
+      children: [
+        { text: '基于babel的编译基础', link: '/compile/abort-babel-compile' },
+      ]
+    },
   ]
 }
